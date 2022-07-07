@@ -1,3 +1,43 @@
+html{
+	margin: auto;
+	max-width: 800px;
+}
+
 body {
-  background-color: lightblue;
+  background-color: white;
+  margin: auto;
+  font-size: 12px;
+  color: rgb(80, 80, 80);
+}
+
+h1{
+  font-size: 48px;
+  text-align: center;
+}
+
+a{
+ border:1px solid black;  
+ text-decoration: none;
+ color: white;
+ background-color: blue;
+}
+
+footer{
+  background-color: black;
+  font-size: 10px;
+  text-align: right;
+  color: white;
+}
+
+label {
+width: 100px;
+display: inline-block;
+}
+
+input[type="text"] {
+    width: 400px;
+}
+
+input[type="tel"] {
+    width: 400px;
 }
