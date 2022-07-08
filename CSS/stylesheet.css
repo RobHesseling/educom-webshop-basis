@@ -10,18 +10,6 @@ body {
   color: rgb(80, 80, 80);
 }
 
-h1{
-  font-size: 48px;
-  text-align: center;
-}
-
-a{
- border:1px solid black;  
- text-decoration: none;
- color: white;
- background-color: blue;
-}
-
 footer{
   background-color: black;
   font-size: 10px;
@@ -30,14 +18,15 @@ footer{
 }
 
 label {
-width: 100px;
-display: inline-block;
+  width: 100px;
+  display: inline-block;
 }
 
-input[type="text"] {
-    width: 400px;
+input {
+  width: 400px;
 }
 
-input[type="tel"] {
-    width: 400px;
+
+input[type="submit"], input[type="radio"]  {
+  width: auto;
 }
