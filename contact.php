@@ -1,3 +1,16 @@
+
+<?php
+    # Als er een post request gedaan wordt. Vervolgens worden er variabelen gemaakt van de waardes.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $naam = htmlspecialchars($_REQUEST['naam']); 
+      $email = htmlspecialchars($_REQUEST['email']); 
+      $tel = htmlspecialchars($_REQUEST['tel']); 
+      $bericht = htmlspecialchars($_REQUEST['bericht']); 
+      //$formulierIsCorrect = True; # Deze boolean is standaard true, vervolgens wordt er gekeken of er iets niet is ingevuld. Is dit het geval dan wordt de boolean false.
+      $GLOBALS['formulierIsCorrect'] = "True"; 
+
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +26,10 @@
   color: white;
   background-color: blue;
   font-size: 24px;
+}
 
+.error{
+  color: red;
 }
 </style>
   <title>Contact</title>  
@@ -38,68 +54,64 @@
     <option value="Dhr.">Dhr.</option>
     <option value="Mvr.">Mvr.</option>
   </select>
-
+  
+  <span class="error"></span>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
   
-  <label for="naam">Naam :</label>
-  <input type="text" name="naam"><br>
+  <label for="naam">Naam:</label>  
+  <input type="text" name="naam" value="<?php echo isset($_POST['naam']) ? htmlspecialchars($_POST['naam'], ENT_QUOTES) : ''; ?>" required>
+  <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+      if (!preg_match("/^[a-zA-Z-' ]*$/",$naam)){
+        echo '<span style="color:red;">Gebruik alleen letters en spaties!</span>';
+        $formulierIsCorrect = false;
+      }
+    } 
+    else {;}
+  ?> <br>
   
-  <label for="email">email :</label>
-  <input type="text" name="email"><br>
+  <label for="email">Email:</label>
+  <input type="text" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : ''; ?>" required>
+  <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo '<span style="color:red;">Voer een geldig mailadres in!</span>';
+        $formulierIsCorrect = false;
+      }
+    } 
+    else {;}
+  ?><br>
 
-  <label for="tel">tel :</label>
-  <input type="tel" name="tel"><br><br>
+  <label for="tel">Tel:</label>
+  <input type="tel" name="tel" value="<?php echo isset($_POST['tel']) ? htmlspecialchars($_POST['tel'], ENT_QUOTES) : ''; ?>" required>
+  <br><br>
   
   <p>Communicatie voorkeur:</p>
 
-  <input type="radio" id="voorkeur" name="voorkeur" value="Email">
-  <label for="voorkeur">Email</label><br>
-
-  <input type="radio" id="voorkeur" name="voorkeur" value="Tel">
-  <label for="voorkeur">Tel</label><br><br><br>
+  
+  <input type="radio" name="voorkeur" value="email" <?php if(isset($_POST['voorkeur']) && $_POST['voorkeur'] =='email' ){echo "checked";}?> required> Email<br>
+  <input type="radio" name="voorkeur" value="tel" <?php if(isset($_POST['voorkeur']) && $_POST['voorkeur'] =='tel' ){echo "checked";}?> required>Tel<br><br>
+  
 
   <p><label for="bericht">Waarover wilt u contact opnemen?</label></p>
-  <textarea type="bericht" name="bericht" rows="4" cols="50"></textarea>
-  <br>
+  <textarea id="textArea1" type="bericht" name="bericht" required><?php if(isset($_POST['bericht'])) { 
+         echo htmlentities ($_POST['bericht']); }?></textarea><br>
 
   <input type="submit" value="Submit">
 
 
   </form>
  
- <!--   Deze php code is code voor de volgende opdracht. Dit is nog niet af.
-  <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $naam = htmlspecialchars($_REQUEST['naam']); 
-      $email = htmlspecialchars($_REQUEST['email']); 
-      $tel = htmlspecialchars($_REQUEST['tel']); 
-      $bericht = htmlspecialchars($_REQUEST['bericht']); 
-  
-      $formulierIsCorrect = True;
-    if (empty($naam)) {
-      $formulierIsCorrect = False;
-      echo "naam is empty";} 
-    else {
-      ; }
-    if (empty($email)) {
-      $formulierIsCorrect = False;
-      echo "email is empty";} 
-    else {
-      ; }
-    if (empty($tel)) {
-      $formulierIsCorrect = False;
-      echo "tel is empty";} 
-     else {
-      ; }
-    if ($formulierIsCorrect == False) {
-      echo "Het formulier is niet correct ingevuld! <br>";
-      echo htmlspecialchars($_GET['naam']);    } 
-    else {
+
+   <?php
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($formulierIsCorrect == True) {
       echo '<script>alert("Dankuwel voor het invullen van het formulier")</script>'; }
-  
-    }
+    else { ; }
+   }
+   else {;}
   ?>
- -->
+
  
 </body>
 <footer>
