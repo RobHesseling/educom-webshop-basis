@@ -30,3 +30,16 @@ input {
 input[type="submit"], input[type="radio"]  {
   width: auto;
 }
+
+.Header {
+  font-size: 48px;
+  text-align: center;
+}
+
+.Menu {
+  border:1px solid black;  
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  font-size: 24px;
+}
