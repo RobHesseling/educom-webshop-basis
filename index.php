@@ -17,12 +17,14 @@ function getRequestedPage()
  
    if ($requested_type == 'POST') 
    { 
-       $requested_page = getPostVar('page','home'); 
+       $requested_page = getPostVar('page','contact'); 
    } 
    else 
    { 
        $requested_page = getUrlVar('page','home');
    } 
+   //var_dump($requested_page);
+   //echo'<hr>';
    return $requested_page; 
 } 
 //==============================================
@@ -41,6 +43,13 @@ function getArrayVar($array, $key, $default='')
 //==============================================
 function getPostVar($key, $default='') 
 { 
+/*
+    echo '1 '; var_dump(  $_POST);
+    echo'<hr>';
+    echo '2 ' . $key;
+    echo'<hr>';
+    echo '3 ' . $default; 
+    echo'<hr>';*/
     return getArrayVar($_POST, $key, $default);
 
     // Or use the modern variant below, a better way than accessing super global "$_POST"
@@ -49,7 +58,9 @@ function getPostVar($key, $default='')
        //for extra options 
     
        //$value = filter_input(INPUT_POST, $key); 
-        
+        //echo'<hr>';
+        //var_dump($value);
+        //echo'<hr>';
        //return isset($value) ? $value : $default; 
     
 } 
