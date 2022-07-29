@@ -1,0 +1,2 @@
+[email]|[naam]|[wachtwoord]
+Robhesseling15@gmail.com|Rob Hesseling|Wachtwoord
