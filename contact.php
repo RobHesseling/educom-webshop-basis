@@ -12,23 +12,25 @@ function HTMLContactPage($keepValueNaam, $naam_err, $keepValueEmail, $email_err,
   echo '<p>Welkom op de contact pagina!</p>
 
                 <label for="aanhef">Aanhef :</label>
-                <select name="cars" id="cars">
+                <select name="aanhef" id="aanhef">
                 <option value="Dhr.">Dhr.</option>
                 <option value="Mvr.">Mvr.</option>
                 </select>
   
                 <span class="error"></span>
-                <form method="post" action="'.$_SERVER['PHP_SELF'].'">
+                <form method="post" action="'.$_SERVER['PHP_SELF'].'" >
+                <input type="hidden" name="page" value = "contact">
+                
   
                 <label for="naam">Naam:</label>  
-                <input type="text" name="naam" value="'. $keepValueNaam .'" required>  '. $naam_err.'  <br>
+                <input type="text" name="naam" value="'. $keepValueNaam .'" required>  '. $naam_err.'  <br> 
   
                 <label for="email">Email:</label> 
                 <input type="text" name="email" value="'. $keepValueEmail .'" required> '.$email_err.' <br>
                 <label for="tel">Tel:</label>
                 <input type="tel" name="tel" value="'. $keepValueTel . '" required> '.$tel_err.'
                 <br><br>
-  
+
                 <p>Communicatie voorkeur:</p>
 
                 <input type="radio" name="voorkeur" value="email" '.$email_Checked.' required> Email<br>
@@ -116,6 +118,5 @@ function showContactContent(){
     }
     
 }
-
 
 ?>
