@@ -45,11 +45,25 @@ function HTMLContactPage($keepValueNaam, $naam_err, $keepValueEmail, $email_err,
 }
 
 function showContactContent(){
+      $naam_err = '';
+      $email_err = '';
+      $bericht = '';
+      $dankjewel = '';
+      $keepValueNaam = '';
+      $keepValueEmail ='';
+      $keepValueTel = '';
+      $email_Checked= '';
+      $tel_Checked= '';
+      $bericht_err = '';
+      $tel_err ='';
+      HTMLContactPage($keepValueNaam, $naam_err, $keepValueEmail, $email_err, $keepValueTel, $tel_err ,$email_Checked, $tel_Checked, $bericht, $bericht_err);
+
+/*
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $naam = htmlspecialchars($_REQUEST['naam']); 
-      $email = htmlspecialchars($_REQUEST['email']); 
-      $tel = htmlspecialchars($_REQUEST['tel']); 
-      $bericht = htmlspecialchars($_REQUEST['bericht']); 
+      $naam = htmlspecialchars($_POST['naam']); 
+      $email = htmlspecialchars($_POST['email']); 
+      $tel = htmlspecialchars($_POST['tel']); 
+      $bericht = htmlspecialchars($_POST['bericht']); 
       $email_Checked= '';
       $tel_Checked= '';
       $formIsCorrect = True;
@@ -116,7 +130,7 @@ function showContactContent(){
       $tel_err ='';
       HTMLContactPage($keepValueNaam, $naam_err, $keepValueEmail, $email_err, $keepValueTel, $tel_err ,$email_Checked, $tel_Checked, $bericht, $bericht_err);
     }
-    
+    */
 }
 
 ?>
